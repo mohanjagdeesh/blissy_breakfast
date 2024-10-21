@@ -15,15 +15,27 @@ import { IValidationRules } from '../../../interfaces/IValidation';
 const signupFormAttributes: ISignupFormProps[] = [
       {
         inputType: 'text',
-        name: 'username',
-        placeHolder:'Email Address',
-        iconName:'mail',
+        name: 'firstName',
+        placeHolder:'First Name',
+        iconName:'idcard',
+      },
+      {
+        inputType: 'text',
+        name: 'lastName',
+        placeHolder:'Last Name(Optional)',
+        iconName:'idcard',
       },
       {
         inputType:'number',
         name:'phone',
         placeHolder:'Phone number',
         iconName:'phone',
+      },
+      {
+        inputType: 'text',
+        name: 'email',
+        placeHolder:'Email Address',
+        iconName:'mail',
       },
       {
         inputType: 'password',
@@ -34,17 +46,25 @@ const signupFormAttributes: ISignupFormProps[] = [
 ];
 
 const signUpFormValidationRules:IValidationRules = {
-  username: [
-    { required: true, message: 'Email is required' },
-    {min: 1 , message:'Email is required'},
-    {pattern:Constants.emailRegex,message:'Email should contain @gmail.com'},
-    {max: 35 , message:'Email should not exceed 35 characters'},
+  firstName: [
+    { required: true, message: 'First Name is required' },
+    {min: 1 , message:'First Name is required'},
+    {max: 25 , message:'First Name should not exceed 25 characters'},
+  ],
+  lastName: [
+    {max: 15 , message:'Last Name should not exceed 15 characters'},
   ],
   phone: [
     { required: true, message: 'Phone Number is required' },
     {min: 1 , message:'Phone Number is required'},
     {pattern:Constants.phoneNumberRegex,message:'Phone number mustbe 10 digits'},
     {max: 35 , message:'Phone number should not exceed 10 characters'},
+  ],
+  email: [
+    { required: true, message: 'Email is required' },
+    {min: 1 , message:'Email is required'},
+    {pattern:Constants.emailRegex,message:'Email should contain @gmail.com'},
+    {max: 35 , message:'Email should not exceed 35 characters'},
   ],
   password: [
     { required: true, message: 'Password is required' },
