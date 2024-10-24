@@ -10,5 +10,5 @@ export interface IInputRendererProps{
     value: string;
     onChangeText: (text: string) => void;
     showPassword?:boolean;
-    setShowPassword: React.Dispatch<React.SetStateAction<boolean>>;
+    setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
 }

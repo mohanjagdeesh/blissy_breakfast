@@ -4,13 +4,14 @@ import { DrawerActions, useNavigation } from '@react-navigation/native';
 import HomeScreen from "../screens/HomeScreen";
 import Icon from 'react-native-vector-icons/Entypo';
 import SignInScreen from '../screens/authentication/signin/SignInScreen';
-import SignupScreen from '../screens/authentication/signup/SignuScreen'
+import SignupScreen from '../screens/authentication/signup/SignuScreen';
+import ForgotPassword from '../screens/authentication/forgotpassword/ForgotPassword';
 
 export type RootStackParamList = {
   Root:undefined;
   Home: undefined;
   Login: undefined;
-
+  ForgotPassword:undefined;
 }
 
 const StackNavigation = () => {
@@ -50,6 +51,11 @@ const StackNavigation = () => {
         options={{headerShown:false}}
         name="SignUp"
         component={SignupScreen}
+      />
+      <Stack.Screen
+        options={{headerShown:false}}
+        name="ForgotPassword"
+        component={ForgotPassword}
       />
     </Stack.Navigator>
   );

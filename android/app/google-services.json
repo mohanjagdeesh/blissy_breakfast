@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "716029522022",
+    "project_id": "blissy-breakfast",
+    "storage_bucket": "blissy-breakfast.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716029522022:android:7fa7b883911f68719ebda7",
+        "android_client_info": {
+          "package_name": "com.blissybreakfast"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnpnGMugTBZo8096oNtUPQ_pmBEsXceGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

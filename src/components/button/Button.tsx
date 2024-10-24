@@ -4,12 +4,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import buttonStyles from './ButtonStyles';
 import { Colors } from '../../utils/Colors';
 
-export interface IButtonTitle{
+export interface IAppButton{
     title:string;
     onButtonPress:() => void;
 }
 
-const AppButton:React.FC<IButtonTitle> = ({title,onButtonPress}) => {
+const AppButton:React.FC<IAppButton> = ({title,onButtonPress}) => {
   return (
     <TouchableOpacity onPress={()=>onButtonPress()} activeOpacity={0.7}>
         <LinearGradient colors={[Colors.feijoa, Colors.lima]} style={buttonStyles.button}>

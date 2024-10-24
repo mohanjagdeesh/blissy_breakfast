@@ -8,9 +8,7 @@ const authNavigationStyles = StyleSheet.create({
         width:'100%',
         height:70,
     },
-    welcomeTitle:{
-        fontSize:25,
-        color:Colors.white,
+    authHeaderTitle:{
         fontWeight:'bold',
         marginHorizontal:'auto'
     }
