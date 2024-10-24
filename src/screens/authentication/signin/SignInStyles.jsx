@@ -30,6 +30,27 @@ const SignInStyles = StyleSheet.create({
         borderTopLeftRadius:15,
         borderTopRightRadius:15,
     },
+    memoryContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        justifyContent:'space-between'
+    },
+    switchStyles:{
+        height:15,
+        width:30,
+    },
+    remembermeContainer:{
+        flexDirection:'row',
+        alignItems:'center',
+        gap:4
+    },
+    remembermeTitle:{
+        color:Colors.codGray
+    },
+    forgotTitle:{
+        color:Colors.blueRibbon,
+        textDecorationLine:'underline'
+    }
 });
 
 

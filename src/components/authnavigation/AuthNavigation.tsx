@@ -2,19 +2,19 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import authNavigationStyles from './AuthNavigationStyles';
-import { Colors } from '../../utils/Colors';
 import { navigate } from '../../utils/NavigationType';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { IAuthNavigation } from '../../interfaces/IAuthNavigation';
 
 
-const AuthNavigation = () => {
+const AuthNavigation = ({navigateTo,arrowSize,arrowColor,headerTitle,headerTitleColor,headerTitleSize}:IAuthNavigation) => {
   return (
     <SafeAreaView>
     <View style={authNavigationStyles.authContainer}>
-      <TouchableOpacity activeOpacity={0.5} onPress={()=>navigate('Home')}>
-      <AntDesign name="arrowleft" size={40} color={Colors.white} />
+      <TouchableOpacity activeOpacity={0.5} onPress={()=>navigate(navigateTo)}>
+      <AntDesign name="arrowleft" size={arrowSize} color={arrowColor} />
       </TouchableOpacity>
-      <Text style={authNavigationStyles.welcomeTitle}>Welcome</Text>
+      <Text style={[authNavigationStyles.authHeaderTitle,{color:headerTitleColor,fontSize:headerTitleSize}]}>{headerTitle}</Text>
     </View>
     </SafeAreaView>
   )

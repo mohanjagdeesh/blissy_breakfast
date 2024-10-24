@@ -10,6 +10,7 @@ import InputRenderer from '../../../components/inputRenderer/InputRenderer';
 import AppButton from '../../../components/button/Button';
 import * as Constants from '../../../utils/Constants';
 import { IValidationRules } from '../../../interfaces/IValidation';
+import { Colors } from '../../../utils/Colors';
 
 
 const signupFormAttributes: ISignupFormProps[] = [
@@ -107,7 +108,7 @@ const SignupScreen = () => {
           source={require('../../../../src/assets/images/create_account_banner.png')}
           resizeMode='cover'
         >
-          <AuthNavigation />
+          <AuthNavigation navigateTo='Home' arrowSize={40} arrowColor='white' headerTitle='Welcome' headerTitleColor={Colors.white} headerTitleSize={25} />
         </ImageBackground>
         <Form
           initialValues={{ username: '', password: ''}}

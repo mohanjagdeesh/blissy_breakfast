@@ -1,4 +1,4 @@
-package com.healthproject
+package com.blissybreakfast
 
 import android.app.Application
 import com.facebook.react.PackageList

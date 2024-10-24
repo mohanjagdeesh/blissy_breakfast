@@ -1,13 +1,15 @@
-import { ImageBackground, Text, View, ScrollView, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import signInStyles from './SignInStyles';
 import AuthNavigation from '../../../components/authnavigation/AuthNavigation';
-import { Form } from '@ant-design/react-native';
+import { Form, Switch } from '@ant-design/react-native';
 import { ISignupFormProps } from '../../../interfaces/ISignupForm';
 import InputRenderer from '../../../components/inputRenderer/InputRenderer';
 import AppButton from '../../../components/button/Button';
 import * as Constants from '../../../utils/Constants';
 import { IValidationRules } from '../../../interfaces/IValidation';
+import { Colors } from '../../../utils/Colors';
+import { useNavigation } from '@react-navigation/native';
 
 const signupFormAttributes: ISignupFormProps[] = [
   {
@@ -42,7 +44,9 @@ const validationRules:IValidationRules = {
 
 const SignInScreen = () => {
   const [showPassword,setShowPassword] = useState<boolean>(false);
+  const [rememberMe,setRememberMe] = useState<boolean>(false);
   const [signinForm] = Form.useForm();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const sumbitFormDetails = () => {
     signinForm
@@ -72,7 +76,7 @@ const SignInScreen = () => {
           source={require('../../../assets/images/welcome_back_banner.png')}
           resizeMode="cover"
         >
-          <AuthNavigation />
+          <AuthNavigation navigateTo='Home' arrowSize={40} arrowColor='white' headerTitle='Welcome' headerTitleColor={Colors.white} headerTitleSize={25} />
         </ImageBackground>
         <Form
           initialValues={{ username: '', password: ''}}
@@ -97,6 +101,15 @@ const SignInScreen = () => {
               />
             </Form.Item>
           ))}
+          <View style={signInStyles.memoryContainer}>
+            <View style={signInStyles.remembermeContainer}>
+              <Switch style={signInStyles.switchStyles} color={Colors.feijoa} checked={rememberMe} onChange={()=>setRememberMe(!rememberMe)}/>
+              <Text style={signInStyles.remembermeTitle}>Remember me</Text>
+            </View>
+            <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')} activeOpacity={0.7}>
+              <Text style={signInStyles.forgotTitle}>Forgot password?</Text>
+            </TouchableOpacity>
+          </View>
           <AppButton onButtonPress={sumbitFormDetails} title="SignIn" />
         </Form>
       </ScrollView>
