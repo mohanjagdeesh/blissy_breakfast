@@ -1,4 +1,4 @@
-import { ImageBackground, Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { ImageBackground, Text, View, ScrollView, KeyboardAvoidingView, TouchableOpacity, Alert } from 'react-native';
 import React, { useState } from 'react';
 import signInStyles from './SignInStyles';
 import AuthNavigation from '../../../components/authnavigation/AuthNavigation';
@@ -10,6 +10,10 @@ import * as Constants from '../../../utils/Constants';
 import { IValidationRules } from '../../../interfaces/IValidation';
 import { Colors } from '../../../utils/Colors';
 import { useNavigation } from '@react-navigation/native';
+import { navigate } from '../../../utils/NavigationType';
+import { RootStackParamList } from '../../../navigations/StackNavigation';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { signInUser } from '../../../services/authentication/authentication';
 
 const signupFormAttributes: ISignupFormProps[] = [
   {
@@ -45,18 +49,34 @@ const validationRules:IValidationRules = {
 const SignInScreen = () => {
   const [showPassword,setShowPassword] = useState<boolean>(false);
   const [rememberMe,setRememberMe] = useState<boolean>(false);
+  const [isLoading , setIsLoading] = useState<boolean>(false);
   const [signinForm] = Form.useForm();
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const sumbitFormDetails = () => {
-    signinForm
-      .validateFields()
-      .then(values => {
-        console.log('Form Values:', values);
-      })
-      .catch(errorInfo => {
-        console.log('Validation Failed:', errorInfo);
-      });
+  const signingInUser = async () => {
+    try{
+      setIsLoading(true);
+      const values = await signinForm.validateFields();
+      const response = await signInUser(values);
+      if(response?.success){
+        Alert.alert(
+          "Login Successfull",
+          "",
+          [
+            {
+              text: "OK",
+              onPress: () => navigate('Home'),
+            },
+          ]
+        );
+        signinForm.resetFields();
+      }else{
+        Alert.alert(`${response?.message}`);
+      }
+    }catch(error){
+      console.log(error);
+    }
+    setIsLoading(false);
   };
 
   const signInFormHeader = () => {
@@ -110,7 +130,7 @@ const SignInScreen = () => {
               <Text style={signInStyles.forgotTitle}>Forgot password?</Text>
             </TouchableOpacity>
           </View>
-          <AppButton onButtonPress={sumbitFormDetails} title="SignIn" />
+          <AppButton onButtonPress={signingInUser} title="SignIn" />
         </Form>
       </ScrollView>
     </KeyboardAvoidingView>

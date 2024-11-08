@@ -6,13 +6,15 @@ import Icon from 'react-native-vector-icons/Entypo';
 import SignInScreen from '../screens/authentication/signin/SignInScreen';
 import SignupScreen from '../screens/authentication/signup/SignuScreen';
 import ForgotPassword from '../screens/authentication/forgotpassword/ForgotPassword';
+import { Colors } from '../utils/Colors';
 
 export type RootStackParamList = {
   Root:undefined;
   Home: undefined;
-  Login: undefined;
+  SignIn: undefined;
   ForgotPassword:undefined;
-}
+  SignUp:undefined;
+};
 
 const StackNavigation = () => {
   const Stack = createNativeStackNavigator();
@@ -24,9 +26,9 @@ const StackNavigation = () => {
       screenOptions={{
         statusBarColor: '#0163d2',
         headerStyle: {
-          backgroundColor: '#0163d2',
+          backgroundColor: Colors.feijoa,
         },
-        headerTintColor: '#fff',
+        headerTintColor: Colors.black,
         headerTitleAlign: 'center',
       }}
     >
@@ -36,7 +38,7 @@ const StackNavigation = () => {
           name="menu"
           onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
           size={30}
-          color="#fff"
+          color={Colors.black}
         />
       ),}}
         name="Home"

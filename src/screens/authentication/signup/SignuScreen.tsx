@@ -1,9 +1,10 @@
-import { ImageBackground, Text, View ,ScrollView, KeyboardAvoidingView} from 'react-native';
+import { ImageBackground, Text, View ,ScrollView, KeyboardAvoidingView, Alert} from 'react-native';
 import React, { useState } from 'react';
 import signupStyles from './SignupStyles';
 import AuthNavigation from '../../../components/authnavigation/AuthNavigation';
 import {
   Form,
+  Toast
 } from '@ant-design/react-native';
 import { ISignupFormProps } from '../../../interfaces/ISignupForm';
 import InputRenderer from '../../../components/inputRenderer/InputRenderer';
@@ -11,6 +12,9 @@ import AppButton from '../../../components/button/Button';
 import * as Constants from '../../../utils/Constants';
 import { IValidationRules } from '../../../interfaces/IValidation';
 import { Colors } from '../../../utils/Colors';
+import { createNewUser } from '../../../services/authentication/authentication';
+import Loader from '../../../components/loader/Loader';
+import { navigate } from '../../../utils/NavigationType';
 
 
 const signupFormAttributes: ISignupFormProps[] = [
@@ -79,16 +83,32 @@ const signUpFormValidationRules:IValidationRules = {
 const SignupScreen = () => {
   const [showPassword , setShowPassword] = useState<boolean>(false);
   const [signUpForm] = Form.useForm();
+  const [isLoading,setIsLoading] = useState<boolean>(false);
 
-  const signingUpUser = () => {
-    signUpForm
-      .validateFields()
-      .then(values => {
-        console.log('Form Values:', values);
-      })
-      .catch(errorInfo => {
-        console.log('Validation Failed:', errorInfo);
-      });
+  const signingUpUser = async () => {
+    try{
+      setIsLoading(true);
+      const values = await signUpForm.validateFields();
+      const response= await createNewUser(values);
+      if(response?.success){
+        signUpForm.resetFields();
+        Alert.alert(
+          "Account Created Successfully",
+          "",
+          [
+            {
+              text: "OK",
+              onPress: () => navigate('SignIn'),
+            },
+          ]
+        );
+      }else{
+        Alert.alert(`${response?.message}`);
+      }
+    }catch(error){
+      console.log(error);
+    }
+    setIsLoading(false);
   };
 
   const signUpFormHeader = () => {
@@ -102,7 +122,7 @@ const SignupScreen = () => {
 
   return (
     <KeyboardAvoidingView style={signupStyles.container} behavior='padding'>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }} scrollEnabled={!isLoading}>
         <ImageBackground
           style={signupStyles.backgroundBanner}
           source={require('../../../../src/assets/images/create_account_banner.png')}
@@ -135,6 +155,7 @@ const SignupScreen = () => {
             ))}
             <AppButton onButtonPress={signingUpUser} title="SignUp" />
           </Form>
+          <Loader loaderState={isLoading} loadingText='Please wait we are creating an account for you...' />
       </ScrollView>
     </KeyboardAvoidingView>
   );

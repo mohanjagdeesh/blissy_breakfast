@@ -5,18 +5,18 @@ import {Avatar, Title} from 'react-native-paper';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Colors } from './Colors';
 
 const DrawerList = [
   {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
   {icon: 'login', label: 'SignIn', navigateTo: 'SignIn'},
   {icon: 'login', label: 'SignUp', navigateTo: 'SignUp'},
 ];
-const DrawerLayout = ({icon, label, navigateTo}) => {
+const DrawerLayout = ({icon, label, navigateTo}:{icon:string;label:string;navigateTo:string;}) => {
   const navigation = useNavigation();
-  // console.log(userData);
   return (
     <DrawerItem
-      icon={({color, size}) => <Icon name={icon} color={color} size={size} />}
+      icon={({size}) => <Icon name={icon} color={Colors.black} size={size} />}
       label={label}
       onPress={() => {
         navigation.navigate(navigateTo);
@@ -39,7 +39,7 @@ const DrawerItems = props => {
   };
 function DrawerContent(props) {
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.drawerContainer}>
       <DrawerContentScrollView {...props}>
         <View style={styles.drawerContent}>
           <TouchableOpacity activeOpacity={0.8}>
@@ -69,7 +69,7 @@ function DrawerContent(props) {
       <View style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({color, size}) => (
-            <Icon name="exit-to-app" color={color} size={size} />
+            <Icon name="exit-to-app" color={Colors.black} size={size} />
           )}
           label="Sign Out"
         />
@@ -80,6 +80,10 @@ function DrawerContent(props) {
 export default DrawerContent;
 
 const styles = StyleSheet.create({
+  drawerContainer:{
+    flex:1,
+    backgroundColor:Colors.feijoa
+  },
   drawerContent: {
     flex: 1,
   },
@@ -94,7 +98,7 @@ const styles = StyleSheet.create({
   caption: {
     fontSize: 13,
     lineHeight: 14,
-    // color: '#6e6e6e',
+    color: Colors.black,
     width: '100%',
   },
   row: {
@@ -113,16 +117,16 @@ const styles = StyleSheet.create({
   },
   drawerSection: {
     marginTop: 15,
-    borderBottomWidth: 0,
-    borderBottomColor: '#dedede',
+    borderBottomColor: Colors.whisper,
     borderBottomWidth: 1,
   },
   bottomDrawerSection: {
     marginBottom: 15,
-    borderTopColor: '#dedede',
+    borderTopColor: Colors.whisper,
     borderTopWidth: 1,
-    borderBottomColor: '#dedede',
+    borderBottomColor: Colors.whisper,
     borderBottomWidth: 1,
+    
   },
   preference: {
     flexDirection: 'row',
