@@ -11,6 +11,7 @@ const DrawerList = [
   {icon: 'home-outline', label: 'Home', navigateTo: 'Home'},
   {icon: 'login', label: 'SignIn', navigateTo: 'SignIn'},
   {icon: 'login', label: 'SignUp', navigateTo: 'SignUp'},
+  {icon: 'account-settings-outline', label: 'Settings', navigateTo: 'Settings'},
 ];
 const DrawerLayout = ({icon, label, navigateTo}:{icon:string;label:string;navigateTo:string;}) => {
   const navigation = useNavigation();

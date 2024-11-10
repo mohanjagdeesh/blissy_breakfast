@@ -126,7 +126,7 @@ const SignInScreen = () => {
               <Switch style={signInStyles.switchStyles} color={Colors.feijoa} checked={rememberMe} onChange={()=>setRememberMe(!rememberMe)}/>
               <Text style={signInStyles.remembermeTitle}>Remember me</Text>
             </View>
-            <TouchableOpacity onPress={()=> navigation.navigate('ForgotPassword')} activeOpacity={0.7}>
+            <TouchableOpacity onPress={()=> navigate('ForgotPassword')} activeOpacity={0.7}>
               <Text style={signInStyles.forgotTitle}>Forgot password?</Text>
             </TouchableOpacity>
           </View>

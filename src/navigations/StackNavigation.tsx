@@ -7,6 +7,7 @@ import SignInScreen from '../screens/authentication/signin/SignInScreen';
 import SignupScreen from '../screens/authentication/signup/SignuScreen';
 import ForgotPassword from '../screens/authentication/forgotpassword/ForgotPassword';
 import { Colors } from '../utils/Colors';
+import UserSettings from '../screens/userSettings/UserSettings';
 
 export type RootStackParamList = {
   Root:undefined;
@@ -14,6 +15,10 @@ export type RootStackParamList = {
   SignIn: undefined;
   ForgotPassword:undefined;
   SignUp:undefined;
+  AboutMe:undefined;
+  Addresses:undefined;
+  Transactions:undefined;
+  Notifications:undefined;
 };
 
 const StackNavigation = () => {
@@ -58,6 +63,11 @@ const StackNavigation = () => {
         options={{headerShown:false}}
         name="ForgotPassword"
         component={ForgotPassword}
+      />
+       <Stack.Screen
+        options={{headerShown:false}}
+        name="Settings"
+        component={UserSettings}
       />
     </Stack.Navigator>
   );
