@@ -35,7 +35,7 @@ const UserSettings = () => {
     return(
           <TouchableOpacity onPress={() => navigate(setting.navigateTo)} activeOpacity={0.5} style={[userSettingsStyles.touchableSetting,index === USER_SETTINGS_MOCK_DATA.length - 1 && {marginBottom:0}]}>
             <View style={userSettingsStyles.settingContainer}>
-              <Icon name={setting.settingIconName} size={25} color={Colors.feijoa} />
+              <Icon name={setting.settingIconName} size={25} color={Colors.lima} />
               <Text style={userSettingsStyles.settingTitle}>{setting.settingsTitle}</Text>
             </View>
             <View>

@@ -6,9 +6,9 @@ import inputStyles from './InputRendererStyles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import IonIcons from 'react-native-vector-icons/Ionicons';
 
-const InputRenderer: React.FC<IInputRendererProps> = ({ inputAttributes, value, onChangeText,showPassword,setShowPassword }) => {
+const InputRenderer: React.FC<IInputRendererProps> = ({ inputAttributes, value, onChangeText,showPassword,setShowPassword,inputContStyles,placeHolderColor }) => {
   return (
-    <View style={inputStyles.inputContainer}>
+    <View style={[inputStyles.inputContainer,inputContStyles]}>
       <AntDesign size={23} name={inputAttributes?.iconName} />
       <Input
         style={inputStyles.inputElement}
@@ -16,6 +16,7 @@ const InputRenderer: React.FC<IInputRendererProps> = ({ inputAttributes, value, 
         placeholder={inputAttributes?.placeHolder}
         value={value}
         onChangeText={onChangeText}
+        placeholderTextColor={placeHolderColor ? placeHolderColor : ''}
       />
       {inputAttributes?.inputType === 'password' ? <TouchableOpacity onPress={()=>setShowPassword?.(!showPassword)} activeOpacity={0.5}><IonIcons size={23} name={showPassword ? 'eye-outline' : 'eye-off-outline'} /></TouchableOpacity> : null}
     </View>

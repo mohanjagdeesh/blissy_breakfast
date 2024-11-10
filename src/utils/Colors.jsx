@@ -14,5 +14,9 @@ export const Colors = {
     whisper:'#F4F5F9',
     indigo:'#407EC7',
     lima:'#6CC51D',
-    feijoa:'#AEDC81'
+    feijoa:'#AEDC81',
+    salem:'#097D4C',
+    outrageousOrange:'#FF5733',
+    westSide:'#FF8D1A',
+    monza:'#C70039'
 }

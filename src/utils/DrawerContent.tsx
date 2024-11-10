@@ -17,7 +17,7 @@ const DrawerLayout = ({icon, label, navigateTo}:{icon:string;label:string;naviga
   const navigation = useNavigation();
   return (
     <DrawerItem
-      icon={({size}) => <Icon name={icon} color={Colors.black} size={size} />}
+      icon={({size}) => <Icon name={icon} color={Colors.white} size={size} />}
       label={label}
       onPress={() => {
         navigation.navigate(navigateTo);
@@ -70,7 +70,7 @@ function DrawerContent(props) {
       <View style={styles.bottomDrawerSection}>
         <DrawerItem
           icon={({color, size}) => (
-            <Icon name="exit-to-app" color={Colors.black} size={size} />
+            <Icon name="exit-to-app" color={Colors.white} size={size} />
           )}
           label="Sign Out"
         />
@@ -83,7 +83,7 @@ export default DrawerContent;
 const styles = StyleSheet.create({
   drawerContainer:{
     flex:1,
-    backgroundColor:Colors.feijoa
+    backgroundColor:Colors.salem,
   },
   drawerContent: {
     flex: 1,
@@ -95,11 +95,12 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 3,
     fontWeight: 'bold',
+    color:Colors.white,
   },
   caption: {
     fontSize: 13,
     lineHeight: 14,
-    color: Colors.black,
+    color: Colors.white,
     width: '100%',
   },
   row: {

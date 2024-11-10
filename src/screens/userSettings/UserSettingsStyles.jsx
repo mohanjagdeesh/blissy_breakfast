@@ -22,6 +22,8 @@ const userSettingsStyles = StyleSheet.create({
         left:'50%',
         top:50,
         transform: [{ translateX: -57 }],
+        borderWidth:2,
+        borderColor:Colors.feijoa,
     },
     cameraIcon:{
         backgroundColor:Colors.lima,
@@ -67,7 +69,7 @@ const userSettingsStyles = StyleSheet.create({
         gap:5,
     },
     settingTitle:{
-        fontSize:15,
+        fontSize:16,
         fontWeight:'600',
         color:Colors.black
     }

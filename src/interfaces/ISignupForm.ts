@@ -1,3 +1,5 @@
+import { StyleProp, TextStyle } from "react-native";
+
 export interface ISignupFormProps {
     inputType: 'text' | 'password' | 'number';
     name: string;
@@ -11,4 +13,6 @@ export interface IInputRendererProps{
     onChangeText: (text: string) => void;
     showPassword?:boolean;
     setShowPassword?: React.Dispatch<React.SetStateAction<boolean>>;
+    inputContStyles?:StyleProp<TextStyle>;
+    placeHolderColor?:string;
 }
